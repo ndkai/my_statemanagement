@@ -1,5 +1,7 @@
 import 'package:example/src/kaism_builder.dart';
+import 'package:example/src/kaism_factory.dart';
 import 'package:flutter/material.dart';
+import 'package:statemanagement/statemanagement.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,39 +45,42 @@ class Example extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          KaismBuilder(),
-          Text("asdsad")
-        ],
-      ),
+      body: KaismFactory(
+          kais: TestBloc(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              KaismBuilder<TestBloc, StateX>(
+                  builder: (context, state){
+                    return Center(
+                      child: Text(state.toString()),
+                    );
+                  }
+              ),
+              InkWell(
+                onTap: (){
+
+                },
+                child: Container(
+                  color: Colors.redAccent,
+                  height: 100,
+                  width: 100,
+                ),
+              )
+            ],
+          )),
     );
   }
 }
 
-abstract class EventX{
+abstract class EventX {}
 
-}
+class EventX1 extends EventX {}
 
-class EventX1 extends EventX{
+class EventX2 extends EventX {}
 
-}
+abstract class StateX {}
 
-class EventX2 extends EventX{
+class StateX1 extends StateX {}
 
-}
-
-abstract class StateX{
-
-}
-
-class StateX1 extends StateX{
-
-}
-
-class StateX2 extends StateX{
-
-}
-
+class StateX2 extends StateX {}
