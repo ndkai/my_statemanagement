@@ -44,6 +44,7 @@ class Example extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildContext contextx = context;
     return Scaffold(
       body: KaismFactory(
           kais: TestBloc(),
@@ -52,14 +53,33 @@ class Example extends StatelessWidget {
             children: [
               KaismBuilder<TestBloc, StateX>(
                   builder: (context, state){
-                    return Center(
-                      child: Text(state.toString()),
+                    contextx = context;
+
+                    if(state.data is StateX1){
+                      return Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.red,
+                      );
+                    }
+                    if(state.data is StateX2){
+                      return Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.blue,
+                      );
+                    }
+                    return Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.yellow,
                     );
                   }
               ),
               InkWell(
                 onTap: (){
-
+                  print("asdasd");
+                  KaismFactory.of(contextx!)?.kais.add(EventX1());
                 },
                 child: Container(
                   color: Colors.redAccent,
@@ -70,6 +90,29 @@ class Example extends StatelessWidget {
             ],
           )),
     );
+  }
+}
+class TestBloc extends KaiSM<EventX, StateX>{
+  TestBloc(): super(StateX1()){
+    handle.register<EventX1>((event){
+      _get(event);
+    });
+
+    handle.register<EventX2>((event){
+      _get1(event);
+    });
+  }
+
+  void _get(EventX1 event) async {
+
+    await Future.delayed(Duration(seconds: 2));
+    updateState(StateX1());
+    await Future.delayed(Duration(seconds: 2));
+    updateState(StateX2());
+  }
+  void _get1(EventX2 event) async {
+    await Future.delayed(Duration(seconds: 2));
+    updateState(StateX2());
   }
 }
 
