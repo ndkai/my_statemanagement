@@ -24,10 +24,16 @@ abstract class KaiSM<E, S> implements _KaiSM{
     _controller.close();
   }
 
+
+  void add(E event) {
+    handle.handle(event);
+  }
+
   void updateState(S state) {
     // if(currentState == S){
     //   return;
     // }
+    print("aaaaaaaaaaaaaaaaaaaa" + state.runtimeType.toString());
     _controller.add(state);
   }
 
@@ -35,46 +41,6 @@ abstract class KaiSM<E, S> implements _KaiSM{
 
 }
 
-class TestBloc extends KaiSM<EventX, StateX>{
-  TestBloc(): super(StateX1()){
-    handle.register<EventX1>((event){
-      _get(event);
-    });
 
-    handle.register<EventX2>((event){
-      _get1(event);
-    });
-  }
 
-  void _get(EventX1 event) async {
-    updateState(StateX1());
-  }
-  void _get1(EventX2 event) async {
-    updateState(StateX2());
-  }
-}
-
-abstract class EventX{
-
-}
-
-class EventX1 extends EventX{
-
-}
-
-class EventX2 extends EventX{
-
-}
-
-abstract class StateX{
-
-}
-
-class StateX1 extends StateX{
-
-}
-
-class StateX2 extends StateX{
-
-}
 

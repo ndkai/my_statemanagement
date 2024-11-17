@@ -1,5 +1,5 @@
-import 'package:example/src/kaism_builder.dart';
-import 'package:example/src/kaism_factory.dart';
+
+import 'package:statemanagement/src/widgets/kaism_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:statemanagement/statemanagement.dart';
 
@@ -55,14 +55,14 @@ class Example extends StatelessWidget {
                   builder: (context, state){
                     contextx = context;
 
-                    if(state.data is StateX1){
+                    if(state is StateX1){
                       return Container(
                         height: 100,
                         width: 100,
                         color: Colors.red,
                       );
                     }
-                    if(state.data is StateX2){
+                    if(state is StateX2){
                       return Container(
                         height: 100,
                         width: 100,
