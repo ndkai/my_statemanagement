@@ -33,7 +33,6 @@ abstract class KaiSM<E, S> implements _KaiSM{
     // if(currentState == S){
     //   return;
     // }
-    print("aaaaaaaaaaaaaaaaaaaa" + state.runtimeType.toString());
     _controller.add(state);
   }
 

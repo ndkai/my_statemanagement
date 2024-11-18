@@ -16,4 +16,8 @@ class EventHandle<T> {
       throw Exception("No handler found for event type: ${T.runtimeType}");
     }
   }
+
+  void clear(){
+    _handlers.clear();
+  }
 }

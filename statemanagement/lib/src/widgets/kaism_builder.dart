@@ -11,7 +11,7 @@ class KaismBuilder<B extends KaiSM, S> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = KaismFactory.of(context)?.kais;
+    final bloc = KaismFactory.of(context)?.kaism;
     return StreamBuilder<S>(stream: bloc?.stream as Stream<S>, builder: (context, snapshot){
       return builder(context, snapshot.data as S);
     });

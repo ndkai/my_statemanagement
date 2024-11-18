@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:statemanagement/statemanagement.dart';
 
 class KaismFactory extends InheritedWidget{
-  final KaiSM kais;
+  final KaiSM kaism;
 
   KaismFactory({
-    required this.kais, required super.child
+    required this.kaism, required super.child
   });
 
   static KaismFactory? of(BuildContext context) {
