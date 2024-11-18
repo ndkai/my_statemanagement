@@ -30,9 +30,9 @@ abstract class KaiSM<E, S> implements _KaiSM{
   }
 
   void updateState(S state) {
-    // if(currentState == S){
-    //   return;
-    // }
+    if(currentState == S){
+      return;
+    }
     _controller.add(state);
   }
 
