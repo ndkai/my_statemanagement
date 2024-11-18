@@ -14,7 +14,6 @@ class GetTriviaKaism extends KaiSM<GetTriviaEvent, GetTriviaState> {
     this.getListTriviaUseCase,
     this.deleteTriviaUseCase,
   ) : super(GetTriviaInitial()) {
-    print("asdasdasdasdasdasdasd");
     handle.register<GetTriviaDataEvent>((event) {
       _doGetTriviaDataEvent(event);
     });

@@ -8,8 +8,6 @@ class _TriviaScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(child: KaismBuilder<GetTriviaKaism, GetTriviaState>(
           builder: (context, state) {
-            print("sssss ${state}");
-
             if (state is GetTriviaLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
